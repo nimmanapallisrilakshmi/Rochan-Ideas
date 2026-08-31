@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 
-const A = "/assets";
+const A = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/assets`;
 const imgLogo           = `${A}/283bb.png`;
 const imgHeroSection    = `${A}/89d03.png`;
 const imgAbout1         = `${A}/8e6b7.png`;
@@ -1543,7 +1543,7 @@ const SERVICE_DATA: Record<string, {
     slug: "construction",
     color: "#f7a92c",
     number: "01",
-    bg: "/assets/8e6b7.png",
+    bg: imgAbout1,
     icon: imgIconConstruction,
     title: "Construction & Engineering",
     tagline: "Building stronger structures, every single time.",
@@ -1573,7 +1573,7 @@ const SERVICE_DATA: Record<string, {
     slug: "interiors",
     color: "#1565c0",
     number: "02",
-    bg: "/assets/d30ce.png",
+    bg: imgAbout2,
     icon: imgIconHomeInterior,
     title: "Interiors & UV Wall Printing",
     tagline: "Spaces that inspire. Walls that tell your story.",
@@ -1603,7 +1603,7 @@ const SERVICE_DATA: Record<string, {
     slug: "inspections",
     color: "#f2761e",
     number: "03",
-    bg: "/assets/ebe99.png",
+    bg: imgAbout3,
     icon: imgIconInspection,
     title: "Home Quality Inspections",
     tagline: "Know exactly what you are buying — before you sign.",
@@ -1633,7 +1633,7 @@ const SERVICE_DATA: Record<string, {
     slug: "trading",
     color: "#2e8b3d",
     number: "04",
-    bg: "/assets/5285e.png",
+    bg: imgAbout4,
     icon: imgIconTrading,
     title: "Trading, Import & Export",
     tagline: "Premium materials. Global sourcing. Local reliability.",
@@ -1663,7 +1663,7 @@ const SERVICE_DATA: Record<string, {
     slug: "ecommerce",
     color: "#7c3aed",
     number: "05",
-    bg: "/assets/a6451.png",
+    bg: imgPortfolioItem,
     icon: imgIconEcommerce,
     title: "E-Commerce Services",
     tagline: "Your business online — set up, scaled, and thriving.",
@@ -1693,7 +1693,7 @@ const SERVICE_DATA: Record<string, {
     slug: "project-management",
     color: "#0891b2",
     number: "06",
-    bg: "/assets/99ef5.png",
+    bg: imgPortfolioItem1,
     icon: imgIconCreativeDesign,
     title: "Project Management",
     tagline: "On time. On budget. Every single time.",
