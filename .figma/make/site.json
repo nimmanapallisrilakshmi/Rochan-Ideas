@@ -1,0 +1,10 @@
+{
+  "description": "Generates React code snippets instantly to help developers accelerate UI development and streamline coding workflows with easy-to-use tools.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
