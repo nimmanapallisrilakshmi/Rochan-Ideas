@@ -18,8 +18,6 @@ export const imgProjectsHero      = `${A}/project.jpg`;
 export const imgAboutHero         = `${A}/about.jpg`;
 export const imgMissionVisionHero = `${A}/vm.jpg`;
 export const imgVandM             = `${A}/vm-illustration.jpg`;
-<<<<<<< HEAD
-=======
 export const imgInteriorsHero     = `${A}/ChatGPT Image Sep 16, 2026, 12_07_07 PM.png`;
 
 // ── Wall Story Showcase Gallery ───────────────────────────────────────────────
@@ -39,7 +37,6 @@ export const imgWS13 = `${A}/1000040191.png`;
 export const imgWS14 = `${A}/1000040194.png`;
 export const imgWS15 = `${A}/1000040197.png`;
 export const imgWS16 = `${A}/1000040200.jpg`;
->>>>>>> 8a8adb5 (Fix changes)
 export const imgIconHomeInterior  = `${A}/icon1_home_interior.png`;
 export const imgIconConstruction  = `${A}/icon2_construction.png`;
 export const imgIconInspection    = `${A}/icon3_property_search.png`;

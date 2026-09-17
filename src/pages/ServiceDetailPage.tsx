@@ -7,12 +7,9 @@ import {
   imgBriefcase,
   imgIconConstruction, imgIconHomeInterior, imgIconInspection,
   imgIconTrading, imgIconEcommerce, imgIconCreativeDesign,
-<<<<<<< HEAD
-=======
   imgInteriorsHero,
   imgWS1, imgWS2, imgWS3, imgWS4, imgWS5, imgWS6, imgWS7, imgWS8,
   imgWS9, imgWS10, imgWS11, imgWS12, imgWS13, imgWS14, imgWS15, imgWS16,
->>>>>>> 8a8adb5 (Fix changes)
 } from "@/assets";
 
 // ── Service detail data ───────────────────────────────────────────────────────
@@ -52,11 +49,7 @@ const SERVICE_DATA: Record<string, {
   },
   interiors: {
     slug: "interiors", color: "#1565c0", number: "02",
-<<<<<<< HEAD
-    bg: imgAbout2, icon: imgIconHomeInterior,
-=======
     bg: imgInteriorsHero, icon: imgIconHomeInterior,
->>>>>>> 8a8adb5 (Fix changes)
     title: "Interiors & UV Wall Printing",
     tagline: "Spaces that inspire. Walls that tell your story.",
     overview: "Our interior design team creates stunning, functional spaces that reflect your personality and lifestyle. We go beyond aesthetics — every element is selected and placed for purpose. Alongside our design services, we offer industry-leading UV wall printing technology that can transform any wall into a vibrant, durable masterpiece. From concept boards to installation, we manage the entire process for you.",
@@ -75,12 +68,6 @@ const SERVICE_DATA: Record<string, {
       { step: "04", title: "Styling & Handover",    desc: "Final styling and finishing touches are added before the space is handed over to you." },
     ],
     faqs: [
-<<<<<<< HEAD
-      { q: "How long does an interior project take?",    a: "A typical 3BHK apartment takes 6–10 weeks from design approval to handover." },
-      { q: "Can UV printing be done on any surface?",    a: "UV printing can be applied to walls, tiles, glass, wood, metal, and most flat surfaces." },
-      { q: "Do you handle site supervision?",            a: "Yes, our project coordinator is present on-site throughout the execution phase." },
-      { q: "Is a minimum budget required?",              a: "We cater to all budgets. Our consultants will guide you on the best options for your investment." },
-=======
       { q: "What is UV wall printing?",                             a: "Direct-to-wall digital printing technology that creates high-resolution images and designs using UV-curable inks." },
       { q: "Can I print my own photograph or design?",             a: "Yes, you can print your own photographs, artwork, logos or designs, subject to quality and wall suitability." },
       { q: "Can you customize a design?",                          a: "Yes, we customize or create designs based on your requirements, wall dimensions and interior theme." },
@@ -92,7 +79,6 @@ const SERVICE_DATA: Record<string, {
       { q: "Do you provide the design along with wall printing?",  a: "Yes, we can create or customize wall-ready designs based on your requirements." },
       { q: "Can I get a preview before printing?",                 a: "Yes, a design preview can be provided for customized projects before final printing." },
       { q: "How do I get a quotation?",                            a: "Submit your wall details, photograph, dimensions and requirements through our enquiry form to receive a quotation." },
->>>>>>> 8a8adb5 (Fix changes)
     ],
   },
   inspections: {
@@ -224,12 +210,6 @@ export default function ServiceDetailPage() {
   return (
     <>
       {/* ── Hero ── */}
-<<<<<<< HEAD
-      <div className="relative h-[380px] flex items-end overflow-hidden">
-        <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={svc.bg} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(14,14,16,0.88)] to-[rgba(14,14,16,0.3)]" />
-        <div className="relative z-10 w-full px-10 lg:px-20 pb-12 flex flex-col gap-4 max-w-[900px]">
-=======
       <div className={`relative flex items-end overflow-hidden ${svc.slug === "interiors" ? "h-[460px]" : "h-[380px]"}`}>
         <img
           alt=""
@@ -242,7 +222,6 @@ export default function ServiceDetailPage() {
           : "bg-gradient-to-r from-[rgba(14,14,16,0.92)] via-[rgba(14,14,16,0.55)] to-transparent")
         } />
         <div className={`relative z-10 w-full px-10 lg:px-20 pb-12 flex flex-col gap-4 ${svc.slug === "interiors" ? "max-w-[460px]" : "max-w-[900px]"}`}>
->>>>>>> 8a8adb5 (Fix changes)
           <NavLink to="/services" className="flex items-center gap-2 text-[#f7a92c] text-sm font-semibold w-fit hover:underline" style={{ fontFamily: "'Inter', sans-serif" }}>
             <svg className="size-4" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 8H3M7 12l-4-4 4-4" />
@@ -290,20 +269,6 @@ export default function ServiceDetailPage() {
               </svg>
             </a>
           </div>
-<<<<<<< HEAD
-          <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4">
-            {[
-              { label: "Projects Delivered", value: "150+" },
-              { label: "Client Satisfaction", value: "100%" },
-              { label: "Years Experience",   value: "3+" },
-              { label: "Cities Served",       value: "6+" },
-            ].map((st) => (
-              <div key={st.label} className="bg-white rounded-2xl px-6 py-5 flex items-center justify-between shadow-sm border border-[#f0f0f0]">
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#454545] text-sm font-medium">{st.label}</p>
-                <p style={{ fontFamily: "'Sora', sans-serif", color: svc.color }} className="font-extrabold text-2xl">{st.value}</p>
-              </div>
-            ))}
-=======
           <div className="w-full lg:w-[460px] shrink-0 lg:mt-20">
             {svc.slug === "interiors" ? (
               /* Wall Story brand video in place of stats */
@@ -353,13 +318,10 @@ export default function ServiceDetailPage() {
                 ))}
               </div>
             )}
->>>>>>> 8a8adb5 (Fix changes)
           </div>
         </div>
       </div>
 
-<<<<<<< HEAD
-=======
       {/* ── Wall Story Photo Gallery (Interiors only) ── */}
       {svc.slug === "interiors" && (() => {
         const galleryImgs = [
@@ -423,8 +385,6 @@ export default function ServiceDetailPage() {
           </div>
         );
       })()}
-
->>>>>>> 8a8adb5 (Fix changes)
       {/* ── Features ── */}
       <div className="bg-white px-10 lg:px-20 py-14">
         <div className="max-w-[1440px] mx-auto flex flex-col gap-10">
