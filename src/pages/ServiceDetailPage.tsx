@@ -7,6 +7,12 @@ import {
   imgBriefcase,
   imgIconConstruction, imgIconHomeInterior, imgIconInspection,
   imgIconTrading, imgIconEcommerce, imgIconCreativeDesign,
+<<<<<<< HEAD
+=======
+  imgInteriorsHero,
+  imgWS1, imgWS2, imgWS3, imgWS4, imgWS5, imgWS6, imgWS7, imgWS8,
+  imgWS9, imgWS10, imgWS11, imgWS12, imgWS13, imgWS14, imgWS15, imgWS16,
+>>>>>>> 8a8adb5 (Fix changes)
 } from "@/assets";
 
 // ── Service detail data ───────────────────────────────────────────────────────
@@ -46,7 +52,11 @@ const SERVICE_DATA: Record<string, {
   },
   interiors: {
     slug: "interiors", color: "#1565c0", number: "02",
+<<<<<<< HEAD
     bg: imgAbout2, icon: imgIconHomeInterior,
+=======
+    bg: imgInteriorsHero, icon: imgIconHomeInterior,
+>>>>>>> 8a8adb5 (Fix changes)
     title: "Interiors & UV Wall Printing",
     tagline: "Spaces that inspire. Walls that tell your story.",
     overview: "Our interior design team creates stunning, functional spaces that reflect your personality and lifestyle. We go beyond aesthetics — every element is selected and placed for purpose. Alongside our design services, we offer industry-leading UV wall printing technology that can transform any wall into a vibrant, durable masterpiece. From concept boards to installation, we manage the entire process for you.",
@@ -65,10 +75,24 @@ const SERVICE_DATA: Record<string, {
       { step: "04", title: "Styling & Handover",    desc: "Final styling and finishing touches are added before the space is handed over to you." },
     ],
     faqs: [
+<<<<<<< HEAD
       { q: "How long does an interior project take?",    a: "A typical 3BHK apartment takes 6–10 weeks from design approval to handover." },
       { q: "Can UV printing be done on any surface?",    a: "UV printing can be applied to walls, tiles, glass, wood, metal, and most flat surfaces." },
       { q: "Do you handle site supervision?",            a: "Yes, our project coordinator is present on-site throughout the execution phase." },
       { q: "Is a minimum budget required?",              a: "We cater to all budgets. Our consultants will guide you on the best options for your investment." },
+=======
+      { q: "What is UV wall printing?",                             a: "Direct-to-wall digital printing technology that creates high-resolution images and designs using UV-curable inks." },
+      { q: "Can I print my own photograph or design?",             a: "Yes, you can print your own photographs, artwork, logos or designs, subject to quality and wall suitability." },
+      { q: "Can you customize a design?",                          a: "Yes, we customize or create designs based on your requirements, wall dimensions and interior theme." },
+      { q: "Can you print on different types of walls?",           a: "Yes, subject to the wall surface, condition and technical suitability." },
+      { q: "Do you provide wall-printing machine information?",    a: "Yes, we provide information and assistance for customers interested in purchasing UV wall-printing machines." },
+      { q: "Do you provide commercial wall-printing services?",    a: "Yes, we provide UV wall-printing services for residential, commercial, hospitality, retail and institutional spaces." },
+      { q: "Can you print religious, traditional or cultural artwork?", a: "Yes, we can print customized religious, traditional, cultural and artistic designs." },
+      { q: "Can you print a company logo or branding on a wall?",  a: "Yes, we provide customized wall printing for logos, branding, promotional graphics and corporate interiors." },
+      { q: "Do you provide the design along with wall printing?",  a: "Yes, we can create or customize wall-ready designs based on your requirements." },
+      { q: "Can I get a preview before printing?",                 a: "Yes, a design preview can be provided for customized projects before final printing." },
+      { q: "How do I get a quotation?",                            a: "Submit your wall details, photograph, dimensions and requirements through our enquiry form to receive a quotation." },
+>>>>>>> 8a8adb5 (Fix changes)
     ],
   },
   inspections: {
@@ -200,10 +224,25 @@ export default function ServiceDetailPage() {
   return (
     <>
       {/* ── Hero ── */}
+<<<<<<< HEAD
       <div className="relative h-[380px] flex items-end overflow-hidden">
         <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={svc.bg} />
         <div className="absolute inset-0 bg-gradient-to-r from-[rgba(14,14,16,0.88)] to-[rgba(14,14,16,0.3)]" />
         <div className="relative z-10 w-full px-10 lg:px-20 pb-12 flex flex-col gap-4 max-w-[900px]">
+=======
+      <div className={`relative flex items-end overflow-hidden ${svc.slug === "interiors" ? "h-[460px]" : "h-[380px]"}`}>
+        <img
+          alt=""
+          className="absolute inset-0 size-full max-w-none object-cover"
+          style={svc.slug === "interiors" ? { objectPosition: "65% top" } : {}}
+          src={svc.bg}
+        />
+        <div className={"absolute inset-0 " + (svc.slug === "interiors"
+          ? "bg-gradient-to-r from-[rgba(14,14,16,0.92)] from-30% via-[rgba(14,14,16,0.40)] via-50% to-transparent"
+          : "bg-gradient-to-r from-[rgba(14,14,16,0.92)] via-[rgba(14,14,16,0.55)] to-transparent")
+        } />
+        <div className={`relative z-10 w-full px-10 lg:px-20 pb-12 flex flex-col gap-4 ${svc.slug === "interiors" ? "max-w-[460px]" : "max-w-[900px]"}`}>
+>>>>>>> 8a8adb5 (Fix changes)
           <NavLink to="/services" className="flex items-center gap-2 text-[#f7a92c] text-sm font-semibold w-fit hover:underline" style={{ fontFamily: "'Inter', sans-serif" }}>
             <svg className="size-4" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 8H3M7 12l-4-4 4-4" />
@@ -251,6 +290,7 @@ export default function ServiceDetailPage() {
               </svg>
             </a>
           </div>
+<<<<<<< HEAD
           <div className="w-full lg:w-[320px] shrink-0 flex flex-col gap-4">
             {[
               { label: "Projects Delivered", value: "150+" },
@@ -263,10 +303,128 @@ export default function ServiceDetailPage() {
                 <p style={{ fontFamily: "'Sora', sans-serif", color: svc.color }} className="font-extrabold text-2xl">{st.value}</p>
               </div>
             ))}
+=======
+          <div className="w-full lg:w-[460px] shrink-0 lg:mt-20">
+            {svc.slug === "interiors" ? (
+              /* Wall Story brand video in place of stats */
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#e0e0e0]">
+                {/* Gradient accent bar */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1 z-10"
+                  style={{ background: "linear-gradient(90deg, #1565c0, #f7a92c)" }}
+                />
+                <video
+                  id="wallstory-brand-video"
+                  className="w-full aspect-video object-cover block"
+                  src="/assets/MicrosoftTeams-video.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                />
+                {/* Overlay badge */}
+                <div
+                  className="absolute bottom-4 left-4 flex items-center gap-2 bg-[rgba(0,0,0,0.65)] backdrop-blur-md rounded-xl px-4 py-2 pointer-events-none"
+                  style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                >
+                  <div className="size-2.5 rounded-full animate-pulse" style={{ background: "#1565c0" }} />
+                  <p
+                    style={{ fontFamily: "'Sora', sans-serif" }}
+                    className="text-white text-xs font-bold tracking-wide"
+                  >
+                    Wall Story — Brand Introduction
+                  </p>
+                </div>
+              </div>
+            ) : (
+              /* Stats panel for all other services */
+              <div className="flex flex-col gap-4">
+                {[
+                  { label: "Projects Delivered", value: "150+" },
+                  { label: "Client Satisfaction", value: "100%" },
+                  { label: "Years Experience",   value: "3+" },
+                  { label: "Cities Served",       value: "6+" },
+                ].map((st) => (
+                  <div key={st.label} className="bg-white rounded-2xl px-6 py-5 flex items-center justify-between shadow-sm border border-[#f0f0f0]">
+                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#454545] text-sm font-medium">{st.label}</p>
+                    <p style={{ fontFamily: "'Sora', sans-serif", color: svc.color }} className="font-extrabold text-2xl">{st.value}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+>>>>>>> 8a8adb5 (Fix changes)
           </div>
         </div>
       </div>
 
+<<<<<<< HEAD
+=======
+      {/* ── Wall Story Photo Gallery (Interiors only) ── */}
+      {svc.slug === "interiors" && (() => {
+        const galleryImgs = [
+          imgWS1, imgWS2, imgWS3, imgWS4, imgWS5, imgWS6, imgWS7, imgWS8,
+          imgWS9, imgWS10, imgWS11, imgWS12, imgWS13, imgWS14, imgWS15, imgWS16,
+        ];
+        return (
+          <div className="bg-[#fafafa] px-10 lg:px-20 py-16">
+            <div className="max-w-[1440px] mx-auto flex flex-col gap-10">
+              {/* Header */}
+              <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+                <div className="flex flex-col gap-3">
+                  <SectionLabel>OUR WORK</SectionLabel>
+                  <p style={{ fontFamily: "'Sora', sans-serif" }} className="font-extrabold text-[#0e0e10] text-[34px] leading-tight">
+                    Wall Story — Print Gallery
+                  </p>
+                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#454545] text-base leading-[1.7] max-w-[520px]">
+                    A curated showcase of our UV wall printing projects — from religious artwork to corporate branding, murals to custom designs.
+                  </p>
+                </div>
+                <a
+                  href="/contact"
+                  className="flex items-center gap-2 w-fit text-white text-sm font-semibold px-6 py-3 rounded-full shrink-0 hover:opacity-90 transition-opacity"
+                  style={{ background: "#1565c0", fontFamily: "'Inter', sans-serif" }}
+                >
+                  Get a Quote
+                  <svg className="size-4" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
+                </a>
+              </div>
+
+              {/* Masonry Grid */}
+              <div className="columns-2 lg:columns-4 gap-4 space-y-4">
+                {galleryImgs.map((src, i) => (
+                  <div
+                    key={i}
+                    className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={src}
+                        alt={`Wall Story print ${i + 1}`}
+                        className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      {/* hover overlay */}
+                      <div className="absolute inset-0 bg-[rgba(21,101,192,0.0)] group-hover:bg-[rgba(21,101,192,0.18)] transition-colors duration-300 flex items-end p-3">
+                        <span
+                          className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-xs font-semibold px-3 py-1.5 rounded-full"
+                          style={{ background: "rgba(0,0,0,0.55)", fontFamily: "'Sora', sans-serif" }}
+                        >
+                          Wall Story Print #{String(i + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+>>>>>>> 8a8adb5 (Fix changes)
       {/* ── Features ── */}
       <div className="bg-white px-10 lg:px-20 py-14">
         <div className="max-w-[1440px] mx-auto flex flex-col gap-10">

@@ -2,10 +2,40 @@ require("dotenv").config();
 const express    = require("express");
 const cors       = require("cors");
 const nodemailer = require("nodemailer");
+<<<<<<< HEAD
+=======
+const mongoose   = require("mongoose");
+>>>>>>> 8a8adb5 (Fix changes)
 
 const app  = express();
 const PORT = process.env.PORT || 4000;
 
+<<<<<<< HEAD
+=======
+// ── MongoDB connection ────────────────────────────────────────────────────────
+const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/rochan_ideas";
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log(`✅ MongoDB connected → ${MONGO_URI}`))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+// ── Contact Submission Schema ─────────────────────────────────────────────────
+const contactSchema = new mongoose.Schema(
+  {
+    name:      { type: String, required: true, trim: true },
+    email:     { type: String, required: true, trim: true, lowercase: true },
+    phone:     { type: String, required: true },
+    service:   { type: String, default: "Not specified" },
+    message:   { type: String, default: "" },
+    submittedAt: { type: Date, default: Date.now },
+  },
+  { collection: "contact_submissions" }
+);
+
+const ContactSubmission = mongoose.model("ContactSubmission", contactSchema);
+
+>>>>>>> 8a8adb5 (Fix changes)
 // ── Middleware ────────────────────────────────────────────────────────────────
 app.use(cors({
   origin: [
@@ -70,6 +100,18 @@ app.post("/api/contact", async (req, res) => {
   `;
 
   try {
+<<<<<<< HEAD
+=======
+    // ── Save to MongoDB ─────────────────────────────────────────────────────
+    try {
+      await ContactSubmission.create({ name, email, phone, service, message });
+      console.log(`💾 Submission saved to MongoDB for ${name} (${email})`);
+    } catch (dbErr) {
+      // Non-fatal: log DB error but continue with email sending
+      console.error("⚠️  MongoDB save error:", dbErr.message);
+    }
+
+>>>>>>> 8a8adb5 (Fix changes)
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       // Send to Rochan Ideas inbox
       await transporter.sendMail({
@@ -112,8 +154,13 @@ app.post("/api/contact", async (req, res) => {
 
     return res.status(200).json({ success: true, message: "Message received successfully." });
   } catch (err) {
+<<<<<<< HEAD
     console.error("❌ Email error:", err);
     return res.status(500).json({ error: "Failed to send email. Please try again later." });
+=======
+    console.error("❌ Error:", err);
+    return res.status(500).json({ error: "Failed to process your request. Please try again later." });
+>>>>>>> 8a8adb5 (Fix changes)
   }
 });
 
@@ -125,7 +172,12 @@ app.get("/api/health", (_req, res) => {
 // ── Start server ──────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`\n🚀 Rochan Ideas API running on http://localhost:${PORT}`);
+<<<<<<< HEAD
   console.log(`   Health check: http://localhost:${PORT}/api/health\n`);
+=======
+  console.log(`   Health check: http://localhost:${PORT}/api/health`);
+  console.log(`   MongoDB URI:   ${MONGO_URI}\n`);
+>>>>>>> 8a8adb5 (Fix changes)
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     console.log("⚠️  Email not configured. Copy backend/.env.example → backend/.env");
     console.log("   Contact form submissions will be logged to console only.\n");
