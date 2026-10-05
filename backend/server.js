@@ -2,9 +2,6 @@ require("dotenv").config();
 const express    = require("express");
 const cors       = require("cors");
 const nodemailer = require("nodemailer");
-const mongoose   = require("mongoose");
-<<<<<<< HEAD
-=======
 const multer     = require("multer");
 
 // multer — store resume in memory (max 5 MB, PDF/DOC/DOCX only)
@@ -16,7 +13,6 @@ const upload = multer({
     cb(null, allowed.includes(file.mimetype));
   },
 });
->>>>>>> 9d3fab8 (Fix the changes)
 
 const app  = express();
 const PORT = process.env.PORT || 4000;
@@ -43,8 +39,6 @@ const contactSchema = new mongoose.Schema(
 );
 
 const ContactSubmission = mongoose.model("ContactSubmission", contactSchema);
-<<<<<<< HEAD
-=======
 
 // ── Career Application Schema ─────────────────────────────────────────────────
 const careerSchema = new mongoose.Schema(
@@ -60,8 +54,6 @@ const careerSchema = new mongoose.Schema(
   { collection: "career_applications" }
 );
 const CareerApplication = mongoose.model("CareerApplication", careerSchema);
-
->>>>>>> 9d3fab8 (Fix the changes)
 // ── Middleware ────────────────────────────────────────────────────────────────
 app.use(cors({
   origin: [
@@ -134,10 +126,6 @@ app.post("/api/contact", async (req, res) => {
       // Non-fatal: log DB error but continue with email sending
       console.error("⚠️  MongoDB save error:", dbErr.message);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 9d3fab8 (Fix the changes)
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       // Send to Rochan Ideas inbox
       await transporter.sendMail({
@@ -185,8 +173,6 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-=======
 // ── POST /api/careers ─────────────────────────────────────────────────────────
 app.post("/api/careers", upload.single("resume"), async (req, res) => {
   const { jobTitle, name, email, phone, experience, message } = req.body;
@@ -260,8 +246,6 @@ app.post("/api/careers", upload.single("resume"), async (req, res) => {
     return res.status(500).json({ error: "Failed to submit application. Please try again." });
   }
 });
-
->>>>>>> 9d3fab8 (Fix the changes)
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", time: new Date().toISOString() });

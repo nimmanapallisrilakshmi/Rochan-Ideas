@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { useState } from "react";
-=======
 import { useState, useEffect, useCallback } from "react";
->>>>>>> 9d3fab8 (Fix the changes)
 import { NavLink } from "react-router-dom";
 import SectionLabel from "@/components/SectionLabel";
 import CtaBanner from "@/components/CtaBanner";
@@ -15,10 +11,7 @@ import {
   imgBentoTote, imgBentoChair,
   imgArrow, imgCheck, imgAward, imgBriefcase, imgTarget, imgEye,
   imgAvatar, imgAvatar1, imgAvatar2,
-<<<<<<< HEAD
-=======
   imgInteriorsHero, imgWS3, imgWS11,
->>>>>>> 9d3fab8 (Fix the changes)
 } from "@/assets";
 
 // ── Service tab data ─────────────────────────────────────────────────────────
@@ -177,27 +170,7 @@ function HomeServicesTab() {
   );
 }
 
-<<<<<<< HEAD
-// ── HomePage ─────────────────────────────────────────────────────────────────
-export default function HomePage() {
-  return (
-    <>
-      {/* ── Hero ── */}
-      <div className="relative h-[680px] flex items-center overflow-hidden shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)]">
-        <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgHeroSection} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(33,26,18,0.8)] to-[rgba(33,26,18,0)]" />
-        <div className="relative z-10 flex flex-col gap-4 p-12 max-w-[802px]">
-          <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="font-extrabold text-white tracking-[-1.12px]">
-            <p className="text-[64px] leading-tight mb-0">Complete Property</p>
-            <p className="text-[64px] leading-tight mb-0">Solutions,</p>
-            <p className="text-[64px] leading-tight text-[#f7a92c]">Under One Roof</p>
-          </div>
-          <p style={{ fontFamily: "'Inter', sans-serif" }} className="font-medium text-[#e7e7e7] text-base leading-6 max-w-[576px]">
-            Building better spaces, stronger structures and smarter solutions for a better tomorrow. Ideas to Execution.
-          </p>
-        </div>
-        <div className="absolute bottom-12 right-12 backdrop-blur-[6px] bg-[rgba(255,248,244,0.9)] rounded-2xl p-6 flex flex-col gap-2 max-w-[384px] shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)]">
-=======
+
 // ── Hero Carousel ─────────────────────────────────────────────────────────────
 const HERO_SLIDES = [
   {
@@ -307,7 +280,6 @@ function HeroCarousel({ imgArrow }: { imgArrow: string }) {
       {/* Start Your Project card — slide 1 only */}
       {current === 0 && (
         <div className="absolute bottom-12 right-12 z-10 backdrop-blur-[6px] bg-[rgba(255,248,244,0.9)] rounded-2xl p-6 flex flex-col gap-2 max-w-[384px] shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)]">
->>>>>>> 9d3fab8 (Fix the changes)
           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="font-semibold text-[#252525] text-xl leading-6">Start Your Project</p>
           <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#454545] text-base leading-6 pb-2">
             From initial concepts to final handover, we manage every detail with precision.
@@ -317,9 +289,6 @@ function HeroCarousel({ imgArrow }: { imgArrow: string }) {
             <img alt="" className="size-[9px] object-contain" src={imgArrow} />
           </a>
         </div>
-<<<<<<< HEAD
-      </div>
-=======
       )}
 
       {/* Prev / Next arrows */}
@@ -371,7 +340,6 @@ export default function HomePage() {
     <>
       {/* ── Hero Carousel ── */}
       <HeroCarousel imgArrow={imgArrow} />
->>>>>>> 9d3fab8 (Fix the changes)
 
       {/* ── About snippet ── */}
       <div className="bg-[#fafafa] px-10 lg:px-20 py-16">
@@ -413,23 +381,6 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="flex flex-1 gap-4 min-w-0">
-            <div className="flex flex-col gap-4 flex-1 pb-8">
-              <div className="h-48 relative rounded-2xl shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)] overflow-hidden">
-                <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgAbout1} />
-              </div>
-              <div className="h-64 relative rounded-2xl shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)] overflow-hidden">
-                <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgAbout2} />
-              </div>
-            </div>
-            <div className="flex flex-col gap-4 flex-1 pt-8">
-              <div className="h-64 relative rounded-2xl shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)] overflow-hidden">
-                <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgAbout3} />
-              </div>
-              <div className="h-48 relative rounded-2xl shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)] overflow-hidden">
-                <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgAbout4} />
-=======
           <div className="hidden lg:grid grid-cols-2 gap-4 flex-1 min-w-0">
             <div className="flex flex-col gap-4">
               <div className="h-52 relative rounded-2xl shadow-md overflow-hidden">
@@ -445,7 +396,6 @@ export default function HomePage() {
               </div>
               <div className="h-52 relative rounded-2xl shadow-md overflow-hidden">
                 <img alt="Property inspection" className="absolute inset-0 size-full max-w-none object-cover" src={imgWS11} />
->>>>>>> 9d3fab8 (Fix the changes)
               </div>
             </div>
           </div>
@@ -596,38 +546,7 @@ export default function HomePage() {
         </div>
       </div>
 
-<<<<<<< HEAD
-      {/* ── Bento image grid ── */}
-      <div className="w-full h-[800px] relative overflow-hidden rounded-3xl mx-auto max-w-[1440px]">
-        <div className="absolute left-20 top-0 w-[340px] h-[800px] rounded-xl overflow-hidden">
-          <div className="absolute left-[-150px] top-0 w-[640px] h-[800px]">
-            <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgBentoBook} />
-          </div>
-        </div>
-        <div className="absolute left-[444px] top-0 w-[430px] h-[388px] rounded-xl overflow-hidden">
-          <div className="absolute left-[-43px] top-0 w-[517px] h-[388px]">
-            <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgBentoIpad} />
-          </div>
-        </div>
-        <div className="absolute left-[898px] top-0 w-[462px] h-[388px] rounded-xl overflow-hidden">
-          <div className="absolute left-[-11px] top-0 w-[485px] h-[388px]">
-            <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgBentoBillboard} />
-          </div>
-        </div>
-        <div className="absolute left-[444px] top-[412px] w-[289px] h-[388px] rounded-xl overflow-hidden">
-          <div className="absolute left-[-10px] top-0 w-[310px] h-[388px]">
-            <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgBentoLaptop} />
-          </div>
-        </div>
-        <div className="absolute left-[757px] top-[412px] w-[289px] h-[388px] rounded-xl overflow-hidden">
-          <div className="absolute left-[-114px] top-0 w-[517px] h-[388px]">
-            <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgBentoTote} />
-          </div>
-        </div>
-        <div className="absolute left-[1070px] top-[412px] w-[290px] h-[388px] rounded-xl overflow-hidden">
-          <div className="absolute left-[-113px] top-0 w-[517px] h-[388px]">
-            <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgBentoChair} />
-=======
+
       {/* ── Brand Showcase Grid ── */}
       <div className="bg-[#fafafa] px-10 lg:px-20 py-16">
         <div className="max-w-[1440px] mx-auto flex flex-col gap-8">
@@ -658,10 +577,6 @@ export default function HomePage() {
             <div className="rounded-2xl overflow-hidden shadow-md group">
               <img src={imgBentoTote} alt="Tote bag" className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-md group">
-              <img src={imgBentoChair} alt="Branded merchandise" className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
-            </div>
->>>>>>> 9d3fab8 (Fix the changes)
           </div>
         </div>
       </div>
