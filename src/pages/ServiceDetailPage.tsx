@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import { useState } from "react";
+>>>>>>> 9d3fab8 (Fix the changes)
 import { NavLink, useParams } from "react-router-dom";
 import SectionLabel from "@/components/SectionLabel";
 import CtaBanner from "@/components/CtaBanner";
@@ -196,6 +200,17 @@ export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const svc = SERVICE_DATA[slug ?? ""];
 
+<<<<<<< HEAD
+=======
+  // FAQ accordion state
+  const [openFaq, setOpenFaq]       = useState<number | null>(null);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
+
+  // Gallery expand state
+  const [showAllGallery, setShowAllGallery] = useState(false);
+  const GALLERY_PREVIEW = 6;
+
+>>>>>>> 9d3fab8 (Fix the changes)
   if (!svc) {
     return (
       <div className="flex flex-col items-center justify-center py-40 gap-6">
@@ -328,6 +343,10 @@ export default function ServiceDetailPage() {
           imgWS1, imgWS2, imgWS3, imgWS4, imgWS5, imgWS6, imgWS7, imgWS8,
           imgWS9, imgWS10, imgWS11, imgWS12, imgWS13, imgWS14, imgWS15, imgWS16,
         ];
+<<<<<<< HEAD
+=======
+        const visible = showAllGallery ? galleryImgs : galleryImgs.slice(0, GALLERY_PREVIEW);
+>>>>>>> 9d3fab8 (Fix the changes)
         return (
           <div className="bg-[#fafafa] px-10 lg:px-20 py-16">
             <div className="max-w-[1440px] mx-auto flex flex-col gap-10">
@@ -356,7 +375,11 @@ export default function ServiceDetailPage() {
 
               {/* Masonry Grid */}
               <div className="columns-2 lg:columns-4 gap-4 space-y-4">
+<<<<<<< HEAD
                 {galleryImgs.map((src, i) => (
+=======
+                {visible.map((src, i) => (
+>>>>>>> 9d3fab8 (Fix the changes)
                   <div
                     key={i}
                     className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer"
@@ -368,7 +391,10 @@ export default function ServiceDetailPage() {
                         className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
+<<<<<<< HEAD
                       {/* hover overlay */}
+=======
+>>>>>>> 9d3fab8 (Fix the changes)
                       <div className="absolute inset-0 bg-[rgba(21,101,192,0.0)] group-hover:bg-[rgba(21,101,192,0.18)] transition-colors duration-300 flex items-end p-3">
                         <span
                           className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-xs font-semibold px-3 py-1.5 rounded-full"
@@ -381,10 +407,35 @@ export default function ServiceDetailPage() {
                   </div>
                 ))}
               </div>
+<<<<<<< HEAD
+=======
+
+              {/* Show More / Show Less */}
+              {galleryImgs.length > GALLERY_PREVIEW && (
+                <div className="flex justify-center">
+                  <button
+                    id="gallery-toggle-btn"
+                    onClick={() => setShowAllGallery(!showAllGallery)}
+                    className="flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-all hover:shadow-lg"
+                    style={{
+                      background: showAllGallery ? "#f0f0f0" : "#1565c0",
+                      color: showAllGallery ? "#252525" : "#fff",
+                      fontFamily: "'Inter', sans-serif",
+                    }}
+                  >
+                    {showAllGallery ? `Show Less ↑` : `View More ↓`}
+                  </button>
+                </div>
+              )}
+>>>>>>> 9d3fab8 (Fix the changes)
             </div>
           </div>
         );
       })()}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d3fab8 (Fix the changes)
       {/* ── Features ── */}
       <div className="bg-white px-10 lg:px-20 py-14">
         <div className="max-w-[1440px] mx-auto flex flex-col gap-10">
@@ -441,6 +492,7 @@ export default function ServiceDetailPage() {
             <SectionLabel>FAQ</SectionLabel>
             <p style={{ fontFamily: "'Sora', sans-serif" }} className="font-extrabold text-[#252525] text-[34px] leading-tight">Frequently Asked Questions</p>
           </div>
+<<<<<<< HEAD
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {svc.faqs.map((faq) => (
               <div key={faq.q} className="bg-white rounded-2xl p-7 flex flex-col gap-3 shadow-sm border border-[#f0f0f0]">
@@ -454,6 +506,73 @@ export default function ServiceDetailPage() {
               </div>
             ))}
           </div>
+=======
+
+          {/* Accordion list */}
+          <div className="flex flex-col gap-3">
+            {(showAllFaqs ? svc.faqs : svc.faqs.slice(0, 4)).map((faq, i) => (
+              <div
+                key={faq.q}
+                className="bg-white rounded-2xl border border-[#f0f0f0] shadow-sm overflow-hidden"
+              >
+                {/* Question row — clickable */}
+                <button
+                  id={`faq-btn-${i}`}
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center gap-4 px-7 py-5 text-left group"
+                >
+                  <div className="flex items-center justify-center size-7 rounded-full shrink-0" style={{ background: svc.color }}>
+                    <span className="text-white text-xs font-bold">?</span>
+                  </div>
+                  <p style={{ fontFamily: "'Sora', sans-serif" }} className="font-bold text-[#252525] text-base flex-1">{faq.q}</p>
+                  {/* Chevron */}
+                  <svg
+                    className="size-5 shrink-0 transition-transform duration-300"
+                    style={{ color: svc.color, transform: openFaq === i ? "rotate(180deg)" : "rotate(0deg)" }}
+                    fill="none" viewBox="0 0 20 20" stroke="currentColor" strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 8l5 5 5-5" />
+                  </svg>
+                </button>
+
+                {/* Answer — animated expand */}
+                <div
+                  style={{
+                    maxHeight: openFaq === i ? 300 : 0,
+                    transition: "max-height 0.35s ease",
+                    overflow: "hidden",
+                  }}
+                >
+                  <p
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    className="px-7 pb-6 text-[#454545] text-sm leading-[1.8] pl-[68px]"
+                  >
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* See All / Show Less button — only when more than 4 FAQs */}
+          {svc.faqs.length > 4 && (
+            <div className="flex justify-center">
+              <button
+                id="faq-toggle-btn"
+                onClick={() => { setShowAllFaqs(!showAllFaqs); setOpenFaq(null); }}
+                className="flex items-center gap-2 px-8 py-3 rounded-full border-2 font-semibold text-sm transition-all hover:shadow-md"
+                style={{
+                  borderColor: svc.color,
+                  color: showAllFaqs ? "#fff" : svc.color,
+                  background: showAllFaqs ? svc.color : "transparent",
+                  fontFamily: "'Inter', sans-serif",
+                }}
+              >
+                {showAllFaqs ? "Show Less ↑" : `Discover More ↓`}
+              </button>
+            </div>
+          )}
+>>>>>>> 9d3fab8 (Fix the changes)
         </div>
       </div>
 

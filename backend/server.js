@@ -3,6 +3,20 @@ const express    = require("express");
 const cors       = require("cors");
 const nodemailer = require("nodemailer");
 const mongoose   = require("mongoose");
+<<<<<<< HEAD
+=======
+const multer     = require("multer");
+
+// multer — store resume in memory (max 5 MB, PDF/DOC/DOCX only)
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    const allowed = ["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    cb(null, allowed.includes(file.mimetype));
+  },
+});
+>>>>>>> 9d3fab8 (Fix the changes)
 
 const app  = express();
 const PORT = process.env.PORT || 4000;
@@ -29,6 +43,25 @@ const contactSchema = new mongoose.Schema(
 );
 
 const ContactSubmission = mongoose.model("ContactSubmission", contactSchema);
+<<<<<<< HEAD
+=======
+
+// ── Career Application Schema ─────────────────────────────────────────────────
+const careerSchema = new mongoose.Schema(
+  {
+    jobTitle:   { type: String, required: true },
+    name:       { type: String, required: true, trim: true },
+    email:      { type: String, required: true, trim: true, lowercase: true },
+    phone:      { type: String, required: true },
+    experience: { type: String, default: "" },
+    message:    { type: String, default: "" },
+    submittedAt: { type: Date, default: Date.now },
+  },
+  { collection: "career_applications" }
+);
+const CareerApplication = mongoose.model("CareerApplication", careerSchema);
+
+>>>>>>> 9d3fab8 (Fix the changes)
 // ── Middleware ────────────────────────────────────────────────────────────────
 app.use(cors({
   origin: [
@@ -101,6 +134,10 @@ app.post("/api/contact", async (req, res) => {
       // Non-fatal: log DB error but continue with email sending
       console.error("⚠️  MongoDB save error:", dbErr.message);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d3fab8 (Fix the changes)
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       // Send to Rochan Ideas inbox
       await transporter.sendMail({
@@ -148,6 +185,83 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+// ── POST /api/careers ─────────────────────────────────────────────────────────
+app.post("/api/careers", upload.single("resume"), async (req, res) => {
+  const { jobTitle, name, email, phone, experience, message } = req.body;
+
+  // ── Server-side validation ────────────────────────────────────────────────
+  if (!name || !email || !phone || !jobTitle)
+    return res.status(400).json({ error: "Name, email, phone, and job title are required." });
+  if (!/^[a-zA-Z\s]+$/.test(name.trim()))
+    return res.status(400).json({ error: "Name must contain only letters and spaces." });
+  if (!/^[^\s@]+@[^\s@]+\.com$/.test(email))
+    return res.status(400).json({ error: "Email must be a valid address ending with .com" });
+  if (!/^\d{10}$/.test(phone))
+    return res.status(400).json({ error: "Phone must be exactly 10 digits." });
+
+  const resumeFile = req.file; // may be undefined if not attached
+
+  const html = `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <div style="background:linear-gradient(135deg,#1565c0,#0d4fa0);padding:24px 32px;border-radius:12px 12px 0 0;">
+        <h1 style="color:white;margin:0;font-size:22px;">New Career Application</h1>
+        <p style="color:rgba(255,255,255,0.85);margin:4px 0 0;font-size:14px;">Rochan Ideas Pvt. Ltd. — Careers</p>
+      </div>
+      <div style="background:#ffffff;padding:32px;border:1px solid #e8e8e8;border-top:none;border-radius:0 0 12px 12px;">
+        <table style="width:100%;border-collapse:collapse;">
+          <tr><td style="padding:10px 0;color:#888;font-size:13px;width:130px;">Position</td><td style="padding:10px 0;font-weight:700;color:#1565c0;">${jobTitle}</td></tr>
+          <tr style="background:#fafafa;"><td style="padding:10px 8px;color:#888;font-size:13px;">Name</td><td style="padding:10px 8px;font-weight:600;color:#252525;">${name}</td></tr>
+          <tr><td style="padding:10px 0;color:#888;font-size:13px;">Email</td><td style="padding:10px 0;font-weight:600;color:#f7a92c;">${email}</td></tr>
+          <tr style="background:#fafafa;"><td style="padding:10px 8px;color:#888;font-size:13px;">Phone</td><td style="padding:10px 8px;font-weight:600;color:#252525;">+91-${phone}</td></tr>
+          <tr><td style="padding:10px 0;color:#888;font-size:13px;">Experience</td><td style="padding:10px 0;color:#252525;">${experience || "Not specified"}</td></tr>
+          <tr style="background:#fafafa;"><td style="padding:10px 8px;color:#888;font-size:13px;">Resume</td><td style="padding:10px 8px;color:#252525;">${resumeFile ? resumeFile.originalname : "Not attached"}</td></tr>
+        </table>
+        ${message ? `<div style="margin-top:20px;padding:16px;background:#f8f9fa;border-left:4px solid #1565c0;border-radius:4px;"><p style="margin:0 0 8px;color:#888;font-size:12px;">Cover Note</p><p style="margin:0;color:#252525;line-height:1.6;">${message}</p></div>` : ""}
+        <p style="margin-top:24px;color:#aaa;font-size:12px;text-align:center;">Sent from the Rochan Ideas Careers page · ${new Date().toLocaleString("en-IN",{timeZone:"Asia/Kolkata"})} IST</p>
+      </div>
+    </div>`;
+
+  try {
+    try {
+      await CareerApplication.create({ jobTitle, name, email, phone, experience, message });
+      console.log(`💾 Career application saved: ${name} → ${jobTitle}`);
+    } catch (dbErr) {
+      console.error("⚠️ MongoDB save error:", dbErr.message);
+    }
+
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      // Build attachments array (only if resume was uploaded)
+      const attachments = resumeFile
+        ? [{ filename: resumeFile.originalname, content: resumeFile.buffer, contentType: resumeFile.mimetype }]
+        : [];
+
+      await transporter.sendMail({
+        from: `"Rochan Ideas Careers" <${process.env.EMAIL_USER}>`,
+        to: process.env.NOTIFY_EMAIL || "rochanideas@gmail.com",
+        subject: `Career Application: ${name} — ${jobTitle}`,
+        html,
+        replyTo: email,
+        attachments,
+      });
+      await transporter.sendMail({
+        from: `"Rochan Ideas Pvt. Ltd." <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "We received your application — Rochan Ideas",
+        html: `<div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:32px;"><h2 style="color:#1565c0;">Thank you, ${name.split(" ")[0]}!</h2><p style="color:#454545;line-height:1.6;">We have received your application for <strong>${jobTitle}</strong>. Our team will review it and get back to you within 3–5 working days.</p><hr style="border:none;border-top:1px solid #e8e8e8;margin:24px 0;"><p style="color:#aaa;font-size:12px;">— Rochan Ideas Pvt. Ltd., Nellore, Andhra Pradesh</p></div>`,
+      });
+    } else {
+      console.log("⚠️ Email not configured. Career application:", { jobTitle, name, email, phone });
+    }
+    return res.status(200).json({ success: true, message: "Application received! We will be in touch soon." });
+  } catch (err) {
+    console.error("❌ Career route error:", err);
+    return res.status(500).json({ error: "Failed to submit application. Please try again." });
+  }
+});
+
+>>>>>>> 9d3fab8 (Fix the changes)
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", time: new Date().toISOString() });

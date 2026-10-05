@@ -10,6 +10,10 @@ import ServicesPage    from "@/pages/ServicesPage";
 import ServiceDetailPage from "@/pages/ServiceDetailPage";
 import ProjectsPage    from "@/pages/ProjectsPage";
 import ContactPage     from "@/pages/ContactPage";
+<<<<<<< HEAD
+=======
+import CareersPage     from "@/pages/CareersPage";
+>>>>>>> 9d3fab8 (Fix the changes)
 
 /** Scroll to top on every route change */
 function ScrollToTop() {
@@ -26,7 +30,11 @@ export default function App() {
       <ScrollToTop />
       <div className="bg-white w-full min-h-dvh flex flex-col">
         <Navbar />
+<<<<<<< HEAD
         <main className="flex-1 pt-[72px] overflow-x-hidden">
+=======
+        <main className="flex-1 pt-[76px] overflow-x-hidden">
+>>>>>>> 9d3fab8 (Fix the changes)
           <Routes>
             <Route path="/"               element={<HomePage />} />
             <Route path="/about"          element={<AboutPage />} />
@@ -34,6 +42,10 @@ export default function App() {
             <Route path="/services"       element={<ServicesPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
             <Route path="/projects"       element={<ProjectsPage />} />
+<<<<<<< HEAD
+=======
+            <Route path="/careers"        element={<CareersPage />} />
+>>>>>>> 9d3fab8 (Fix the changes)
             <Route path="/contact"        element={<ContactPage />} />
           </Routes>
         </main>

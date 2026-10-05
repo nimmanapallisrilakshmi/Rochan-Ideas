@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useState, useEffect, useCallback } from "react";
+>>>>>>> 9d3fab8 (Fix the changes)
 import { NavLink } from "react-router-dom";
 import SectionLabel from "@/components/SectionLabel";
 import CtaBanner from "@/components/CtaBanner";
@@ -11,6 +15,10 @@ import {
   imgBentoTote, imgBentoChair,
   imgArrow, imgCheck, imgAward, imgBriefcase, imgTarget, imgEye,
   imgAvatar, imgAvatar1, imgAvatar2,
+<<<<<<< HEAD
+=======
+  imgInteriorsHero, imgWS3, imgWS11,
+>>>>>>> 9d3fab8 (Fix the changes)
 } from "@/assets";
 
 // ── Service tab data ─────────────────────────────────────────────────────────
@@ -169,6 +177,7 @@ function HomeServicesTab() {
   );
 }
 
+<<<<<<< HEAD
 // ── HomePage ─────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
@@ -188,6 +197,117 @@ export default function HomePage() {
           </p>
         </div>
         <div className="absolute bottom-12 right-12 backdrop-blur-[6px] bg-[rgba(255,248,244,0.9)] rounded-2xl p-6 flex flex-col gap-2 max-w-[384px] shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)]">
+=======
+// ── Hero Carousel ─────────────────────────────────────────────────────────────
+const HERO_SLIDES = [
+  {
+    img: imgHeroSection,
+    overlay: "bg-gradient-to-r from-[rgba(33,26,18,0.82)] to-[rgba(33,26,18,0.05)]",
+    label: "CONSTRUCTION & ENGINEERING",
+    heading1: "Complete Property",
+    heading2: "Solutions,",
+    heading3: "Under One Roof",
+    sub: "Building better spaces, stronger structures and smarter solutions for a better tomorrow. Ideas to Execution.",
+    link: null as string | null,
+    cta: null as string | null,
+  },
+  {
+    img: imgInteriorsHero,
+    overlay: "bg-gradient-to-r from-[rgba(14,14,16,0.88)] from-30% via-[rgba(14,14,16,0.35)] via-55% to-transparent",
+    label: "INTERIORS & UV WALL PRINTING",
+    heading1: "Spaces That Inspire.",
+    heading2: "Walls That Tell",
+    heading3: "Your Story.",
+    sub: "Premium UV wall printing, bespoke interiors and custom murals by Wall Story — we print, you inspire.",
+    link: "/services/interiors",
+    cta: "Explore Wall Story →",
+  },
+  {
+    img: imgWS3,
+    overlay: "bg-gradient-to-r from-[rgba(14,14,16,0.90)] to-[rgba(14,14,16,0.25)]",
+    label: "UV WALL PRINTING",
+    heading1: "Transform Any Wall",
+    heading2: "Into a Vibrant",
+    heading3: "Masterpiece.",
+    sub: "High-resolution UV-curable prints on walls, tiles, glass and more — for homes, offices and commercial spaces.",
+    link: null as string | null,
+    cta: null as string | null,
+  },
+];
+
+function HeroCarousel({ imgArrow }: { imgArrow: string }) {
+  const [current, setCurrent] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const total = HERO_SLIDES.length;
+
+  const goTo = useCallback((idx: number) => {
+    if (animating) return;
+    setAnimating(true);
+    setCurrent(idx);
+    setTimeout(() => setAnimating(false), 700);
+  }, [animating]);
+
+  const prev = () => goTo((current - 1 + total) % total);
+  const next = useCallback(() => goTo((current + 1) % total), [current, goTo, total]);
+
+  // Auto-advance every 5 s
+  useEffect(() => {
+    const t = setInterval(next, 5000);
+    return () => clearInterval(t);
+  }, [next]);
+
+  const slide = HERO_SLIDES[current];
+
+  return (
+    <div className="relative h-[680px] flex items-center overflow-hidden shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)]">
+      {/* Slides */}
+      {HERO_SLIDES.map((s, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 transition-opacity duration-700"
+          style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 1 : 0 }}
+        >
+          <img
+            alt=""
+            className="absolute inset-0 size-full max-w-none object-cover"
+            style={i === 1 ? { objectPosition: "65% top" } : {}}
+            src={s.img}
+          />
+          <div className={`absolute inset-0 ${s.overlay}`} />
+        </div>
+      ))}
+
+      {/* Text content */}
+      <div className="relative z-10 flex flex-col gap-4 p-12 max-w-[820px]">
+        <span
+          className="text-[#f7a92c] text-xs font-bold tracking-[3px] uppercase"
+          style={{ fontFamily: "'Inter', sans-serif" }}
+        >
+          {slide.label}
+        </span>
+        <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="font-extrabold text-white tracking-[-1.12px]">
+          <p className="text-[58px] leading-tight mb-0">{slide.heading1}</p>
+          <p className="text-[58px] leading-tight mb-0">{slide.heading2}</p>
+          <p className="text-[58px] leading-tight text-[#f7a92c]">{slide.heading3}</p>
+        </div>
+        <p style={{ fontFamily: "'Inter', sans-serif" }} className="font-medium text-[#e7e7e7] text-base leading-6 max-w-[540px]">
+          {slide.sub}
+        </p>
+        {slide.link && (
+          <NavLink
+            to={slide.link}
+            className="flex items-center gap-2 w-fit bg-[#1565c0] text-white font-semibold text-base px-7 py-3.5 rounded-full hover:bg-[#0d4fa0] transition-colors mt-1"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+            {slide.cta}
+          </NavLink>
+        )}
+      </div>
+
+      {/* Start Your Project card — slide 1 only */}
+      {current === 0 && (
+        <div className="absolute bottom-12 right-12 z-10 backdrop-blur-[6px] bg-[rgba(255,248,244,0.9)] rounded-2xl p-6 flex flex-col gap-2 max-w-[384px] shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)]">
+>>>>>>> 9d3fab8 (Fix the changes)
           <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="font-semibold text-[#252525] text-xl leading-6">Start Your Project</p>
           <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#454545] text-base leading-6 pb-2">
             From initial concepts to final handover, we manage every detail with precision.
@@ -197,7 +317,61 @@ export default function HomePage() {
             <img alt="" className="size-[9px] object-contain" src={imgArrow} />
           </a>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+      )}
+
+      {/* Prev / Next arrows */}
+      <button
+        id="hero-prev-btn"
+        onClick={prev}
+        aria-label="Previous slide"
+        className="absolute left-5 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center size-11 rounded-full bg-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.30)] backdrop-blur-sm border border-white/20 text-white transition-all"
+      >
+        <svg className="size-5" fill="none" viewBox="0 0 20 20" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l-5 5 5 5" />
+        </svg>
+      </button>
+      <button
+        id="hero-next-btn"
+        onClick={next}
+        aria-label="Next slide"
+        className="absolute right-5 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center size-11 rounded-full bg-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.30)] backdrop-blur-sm border border-white/20 text-white transition-all"
+      >
+        <svg className="size-5" fill="none" viewBox="0 0 20 20" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M7 5l5 5-5 5" />
+        </svg>
+      </button>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            id={`hero-dot-${i}`}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className="transition-all duration-300 rounded-full"
+            style={{
+              width: i === current ? 28 : 8,
+              height: 8,
+              background: i === current ? "#f7a92c" : "rgba(255,255,255,0.45)",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── HomePage ─────────────────────────────────────────────────────────────────
+export default function HomePage() {
+  return (
+    <>
+      {/* ── Hero Carousel ── */}
+      <HeroCarousel imgArrow={imgArrow} />
+>>>>>>> 9d3fab8 (Fix the changes)
 
       {/* ── About snippet ── */}
       <div className="bg-[#fafafa] px-10 lg:px-20 py-16">
@@ -239,6 +413,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+<<<<<<< HEAD
           <div className="flex flex-1 gap-4 min-w-0">
             <div className="flex flex-col gap-4 flex-1 pb-8">
               <div className="h-48 relative rounded-2xl shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)] overflow-hidden">
@@ -254,6 +429,23 @@ export default function HomePage() {
               </div>
               <div className="h-48 relative rounded-2xl shadow-[0px_10px_30px_0px_rgba(20,20,20,0.05)] overflow-hidden">
                 <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgAbout4} />
+=======
+          <div className="hidden lg:grid grid-cols-2 gap-4 flex-1 min-w-0">
+            <div className="flex flex-col gap-4">
+              <div className="h-52 relative rounded-2xl shadow-md overflow-hidden">
+                <img alt="Wall printing showcase" className="absolute inset-0 size-full max-w-none object-cover" src={imgWS3} />
+              </div>
+              <div className="h-64 relative rounded-2xl shadow-md overflow-hidden">
+                <img alt="Interiors design" className="absolute inset-0 size-full max-w-none object-cover" src={imgAbout3} />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 pt-8">
+              <div className="h-64 relative rounded-2xl shadow-md overflow-hidden">
+                <img alt="Construction project" className="absolute inset-0 size-full max-w-none object-cover" src={imgAbout2} />
+              </div>
+              <div className="h-52 relative rounded-2xl shadow-md overflow-hidden">
+                <img alt="Property inspection" className="absolute inset-0 size-full max-w-none object-cover" src={imgWS11} />
+>>>>>>> 9d3fab8 (Fix the changes)
               </div>
             </div>
           </div>
@@ -404,6 +596,7 @@ export default function HomePage() {
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* ── Bento image grid ── */}
       <div className="w-full h-[800px] relative overflow-hidden rounded-3xl mx-auto max-w-[1440px]">
         <div className="absolute left-20 top-0 w-[340px] h-[800px] rounded-xl overflow-hidden">
@@ -434,6 +627,41 @@ export default function HomePage() {
         <div className="absolute left-[1070px] top-[412px] w-[290px] h-[388px] rounded-xl overflow-hidden">
           <div className="absolute left-[-113px] top-0 w-[517px] h-[388px]">
             <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgBentoChair} />
+=======
+      {/* ── Brand Showcase Grid ── */}
+      <div className="bg-[#fafafa] px-10 lg:px-20 py-16">
+        <div className="max-w-[1440px] mx-auto flex flex-col gap-8">
+          <div className="flex flex-col gap-3 text-center items-center">
+            <SectionLabel>BRAND SHOWCASE</SectionLabel>
+            <p style={{ fontFamily: "'Sora', sans-serif" }} className="font-extrabold text-[#0e0e10] text-[32px] leading-tight">
+              Rochan Ideas — <span className="text-[#f7a92c]">Everywhere</span>
+            </p>
+          </div>
+          {/* Responsive masonry-style grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Large card — spans 2 rows */}
+            <div className="row-span-2 rounded-2xl overflow-hidden shadow-md group" style={{ gridRow: "span 2" }}>
+              <img src={imgBentoBook} alt="Brand book" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style={{ minHeight: 320 }} />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-md group">
+              <img src={imgBentoIpad} alt="Website on tablet" className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-md group">
+              <img src={imgBentoBillboard} alt="Billboard" className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-md group">
+              <img src={imgInteriorsHero} alt="Wall Story" className="w-full h-56 object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-md group">
+              <img src={imgBentoLaptop} alt="Website on laptop" className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-md group">
+              <img src={imgBentoTote} alt="Tote bag" className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-md group">
+              <img src={imgBentoChair} alt="Branded merchandise" className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+>>>>>>> 9d3fab8 (Fix the changes)
           </div>
         </div>
       </div>
